@@ -1,0 +1,11 @@
+Disini saya membuat sebuah aplikasi website menggunakan Framework CodeIgniter dan Bootstrap yang memiliki beberapa fitur yakni:
+1. Menampilkan data dari database
+2. Menambah data
+3. Menghapus data
+4. Mengupdate data
+
+Dengan sistem tambahan berupa:
+1. Form Validasi
+   - apabila tidak sesuai rules maka akan tampil pesan dibawah form inputan berupa pemberitahuan kesalahan dengan style font berukuran kecil berwarna merah dan berbahasa indonesia
+   - apabila terjadi kesalahan validasi value form inputan tidak terhapus
+2. ketika melakukan tambah, hapus, update data, maka akan muncul alert pemberitahuan aksi telah berhasil dilakukan
