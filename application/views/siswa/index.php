@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Data Siswa</title>
-	<link rel="stylesheet" href="<?= base_url('bootstrap/css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= base_url('bootstrap/mystyle.css') ?>">
-</head>
-<body>
 
 	<div class="container" >
 		<div class="card mt-5 shadow">
@@ -15,6 +6,20 @@
 		  </div>
 		  <div class="card-body">
 		  	<a href="<?= base_url('siswa/tambah') ?>" class="btn btn-primary mb-3">Tambah Data</a>
+
+		  	<div class="row" >
+		  		<div class="col-6 mb-2" >
+		  			<form action="" method="post">
+				  		<div class="input-group mb-3">
+							<input type="text" class="form-control" name="katakunci" autocomplete="off" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
+							<div class="input-group-append">
+								<button class="btn btn-info" type="submit" id="button-addon2">Cari</button>
+							</div>
+						</div>
+				  	</form>
+		  		</div>
+		  	</div>
+
 		  	<?php if( $this->session->flashdata('berhasil') ) : ?>
 		  		<div class="alert alert-success alert-dismissible fade show" role="alert">
 				  Data <strong>Berhasil</strong> <?= $this->session->flashdata('berhasil') ?>
@@ -52,9 +57,13 @@
 				<?php endforeach; ?>
 			  </tbody>
 			</table>
+			<?php if( empty($siswa) ) : ?>
+				<div class="alert alert-danger" role="alert">
+				  Data tidak ditemukan :(
+				</div>
+			<?php endif; ?>
 		  </div>
 		</div>
 	</div>
 
-</body>
-</html>
+

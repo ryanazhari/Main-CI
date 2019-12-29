@@ -6,7 +6,22 @@ class Siswa extends CI_Controller {
 	public function index()
 	{
 		$data['siswa'] = $this->db->get('siswa')->result_array();
+		$data['judul'] = "Data Siswa";
+
+		if( $this->input->post('katakunci') ) {
+			$keyword = $this->input->post('katakunci', true);
+
+			$this->db->like('nama', $keyword);
+			$this->db->or_like('jurusan', $keyword);
+			$this->db->or_like('email', $keyword);
+			$this->db->or_like('no_hp', $keyword);
+
+			$data['siswa'] = $this->db->get('siswa')->result_array();
+		}
+
+		$this->load->view('komponen/header', $data);
 		$this->load->view('siswa/index', $data);
+		$this->load->view('komponen/footer');
 	}
 
 	public function tambah()
@@ -20,7 +35,11 @@ class Siswa extends CI_Controller {
 
 		if( $this->form_validation->run() == false ) {
 			$data['jurusan'] = ['rekayasa perangkat lunak','teknik komputer jaringan','multimedia'];
+			$data['judul'] = "Tambah Data";
+
+			$this->load->view('komponen/header', $data);
 			$this->load->view('siswa/tambah_data', $data);
+			$this->load->view('komponen/footer');
 		} else {
 			$nama = $this->input->post('nama', true);
 			$jurusan = $this->input->post('jurusan', true);
@@ -60,7 +79,11 @@ class Siswa extends CI_Controller {
 		if( $this->form_validation->run() == false ) {
 			$data['siswa'] = $this->db->get_where('siswa', ['id' => $id])->row_array();
 			$data['jurusan'] = ['rekayasa perangkat lunak','teknik komputer jaringan','multimedia'];
+			$data['judul'] = "Edit Data";
+
+			$this->load->view('komponen/header', $data);
 			$this->load->view('siswa/edit_data', $data);
+			$this->load->view('komponen/footer');
 		} else {
 			$nama = $this->input->post('nama', true);
 			$jurusan = $this->input->post('jurusan', true);
